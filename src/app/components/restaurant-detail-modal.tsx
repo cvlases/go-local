@@ -2,8 +2,7 @@ import { X, ExternalLink, Clock } from "lucide-react";
 import { Restaurant } from "../data/restaurants";
 import { restaurantImages } from "../data/images";
 import { DIETARY_OPTIONS } from "../config";
-import { DIETARY_ICONS, locationPin, catering as cateringIcon, heart } from "../../assets/icons";
-import phdcLogo from "../../assets/partners/PHDC-logo.png";
+import { DIETARY_ICONS, locationPin, catering as cateringIcon, heart, foodTruck as foodTruckIcon, buildings } from "../../assets/icons";
 
 const VEGAN_SAGE = "#6a9982";
 
@@ -130,12 +129,24 @@ export function RestaurantDetailModal({
               </div>
             )}
 
+            {/* Food Truck */}
+            {restaurant.foodTruck && (
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--gold)] text-[var(--ink)] rounded-full text-sm font-medium">
+                    <img src={foodTruckIcon} alt="" className="w-4 h-4" />
+                    Food Truck
+                  </span>
+                </div>
+              </div>
+            )}
+
             {/* PHDC Incubated */}
             {restaurant.phdcIncubated && (
               <div>
                 <div className="flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium text-white" style={{ backgroundColor: "#9161a3" }}>
-                    <img src={phdcLogo} alt="" className="w-4 h-4 brightness-0 invert" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium text-[var(--ink)]" style={{ backgroundColor: "#dbbaab" }}>
+                    <img src={buildings} alt="" className="w-4 h-4 brightness-0" />
                     PHDC Incubated Business
                   </span>
                 </div>

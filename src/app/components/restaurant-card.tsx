@@ -4,8 +4,7 @@ import { restaurantImages } from "../data/images";
 import { DIETARY_OPTIONS } from "../config";
 import { useState, useEffect } from "react";
 import { isRestaurantLiked, toggleLike } from "../utils/likes";
-import { DIETARY_ICONS, locationPin, catering as cateringIcon } from "../../assets/icons";
-import phdcLogo from "../../assets/partners/PHDC-logo.png";
+import { DIETARY_ICONS, locationPin, catering as cateringIcon, foodTruck as foodTruckIcon, buildings } from "../../assets/icons";
 
 interface RestaurantCardProps {
   restaurant: Restaurant;
@@ -95,9 +94,15 @@ export function RestaurantCard({ restaurant, onClick }: RestaurantCardProps) {
               Catering
             </span>
           )}
+          {restaurant.foodTruck && (
+            <span className="inline-flex items-center gap-1 px-2 py-1 bg-[var(--gold)] text-[var(--ink)] rounded-full text-xs font-medium">
+              <img src={foodTruckIcon} alt="" className="w-3 h-3" />
+              Food Truck
+            </span>
+          )}
           {restaurant.phdcIncubated && (
-            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium text-white" style={{ backgroundColor: "#9161a3" }}>
-              <img src={phdcLogo} alt="" className="w-3 h-3 brightness-0 invert" />
+            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium text-[var(--ink)]" style={{ backgroundColor: "#dbbaab" }}>
+              <img src={buildings} alt="" className="w-3 h-3 brightness-0" />
               PHDC
             </span>
           )}

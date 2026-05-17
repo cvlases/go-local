@@ -30,6 +30,7 @@ export interface Restaurant {
   lng?: number;
   service: string[];
   phdcIncubated?: boolean;
+  foodTruck?: boolean;
 }
 
 export const restaurants: Restaurant[] = [
@@ -245,6 +246,7 @@ export const restaurants: Restaurant[] = [
     orderLink: "https://order.toasttab.com/online/el-rincon-oaxaqueno-2614-brownsville-road",
     website: "https://order.toasttab.com/online/el-rincon-oaxaqueno-2614-brownsville-road",
     image: "el-rincon-oaxaqueno",
+    foodTruck: true,
     phdcIncubated: true,
     likes: 22,
     featured: false,
@@ -268,6 +270,7 @@ export const restaurants: Restaurant[] = [
     orderLink: "https://community.phdcincubator.org/Papelon-Arepa-Bar",
     website: "https://community.phdcincubator.org/Papelon-Arepa-Bar",
     image: "papelon-venezuelan",
+    foodTruck: true,
     phdcIncubated: true,
     likes: 17,
     featured: false,
@@ -360,6 +363,7 @@ export const restaurants: Restaurant[] = [
     orderLink: "https://secretospgh.com",
     website: "https://secretospgh.com",
     image: "secretos-de-mis-abuelos",
+    foodTruck: true,
     likes: 15,
     featured: false,
     categories: ["great-for-catering", "community-favorites"],

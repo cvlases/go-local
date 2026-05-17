@@ -27,6 +27,8 @@ import familyStyle from './family-style.png';
 import neighbors from './neighbors.png';
 import directory from './directory.png';
 import noAds from './no.png';
+import foodTruck from './food-truck.png';
+import buildings from './buildings.png';
 
 export {
   vegan, vegetarian, glutenFree, halal, dairyFree,
@@ -34,7 +36,7 @@ export {
   community, newIcon, healthy,
   pizza, burger, asian, mexican, mediterranean, sandwiches, brunch, cafeBakery, seafood,
   takeout, delivery, lateNight, familyStyle,
-  neighbors, directory, noAds,
+  neighbors, directory, noAds, foodTruck, buildings,
 };
 
 export const DIETARY_ICONS: Record<string, string> = {
