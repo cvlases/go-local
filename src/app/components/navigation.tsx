@@ -19,7 +19,8 @@ export function Navigation() {
     { to: "/directory", label: "Directory" },
     { to: "/map", label: "Map" },
     { to: "/submit", label: "Contribute" },
-    { to: "/extras", label: "Extras" },
+    { to: "/social", label: "Social" },
+    { to: "/mission", label: "Mission" },
     { to: "/partners", label: "Partners" },
   ];
 

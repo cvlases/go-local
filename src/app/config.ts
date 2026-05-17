@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   city: "Pittsburgh, PA",
   tagline: "Your neighborhood, on one page.",
   description: "GoLocal is a community-built guide to the best local restaurants near you — discovered and recommended by real people.",
-  instagramHandle: "@golocal_pgh",
+  instagramHandle: "@centerforsharedprosperity",
   submitFormUrl: "https://forms.google.com/d/e/YOUR_FORM_ID/viewform",
   primaryColor: "#F36E63", // coral
 };

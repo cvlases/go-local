@@ -6,6 +6,8 @@ import { DirectoryPage } from "./pages/directory";
 import { MapPage } from "./pages/map";
 import { SubmitPage } from "./pages/submit";
 import { EventsPage } from "./pages/events";
+import { SocialPage } from "./pages/social";
+import { MissionPage } from "./pages/mission";
 import { PartnersPage } from "./pages/partners";
 import { NotFoundPage } from "./pages/not-found";
 
@@ -19,6 +21,8 @@ export const router = createBrowserRouter([
       { path: "directory", Component: DirectoryPage, ErrorBoundary },
       { path: "map", Component: MapPage, ErrorBoundary },
       { path: "submit", Component: SubmitPage, ErrorBoundary },
+      { path: "social", Component: SocialPage, ErrorBoundary },
+      { path: "mission", Component: MissionPage, ErrorBoundary },
       { path: "extras", Component: EventsPage, ErrorBoundary },
       { path: "partners", Component: PartnersPage, ErrorBoundary },
       { path: "*", Component: NotFoundPage },

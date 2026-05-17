@@ -1,28 +1,38 @@
-import { ExternalLink, Mail, Heart } from "lucide-react";
+import { ExternalLink, Heart } from "lucide-react";
+import cspLogo from "../../assets/partners/csp-logo.webp";
+import createLabLogo from "../../assets/partners/create_lab_logo.avif";
+import phdcLogo from "../../assets/partners/PHDC-logo.png";
+import beamLogo from "../../assets/partners/BEAM_logo.svg";
 
 export function PartnersPage() {
   const featuredPartners = [
     {
-      name: "Casa San Jose",
-      description: "Supporting Latino families and communities in Pittsburgh through education, advocacy, and community building.",
-      website: "https://casasanjose.org",
-      logo: "🏠",
+      name: "Pittsburgh Hispanic Development Corporation",
+      description: "Empowering Pittsburgh's Hispanic community through business incubation, workforce development, and economic opportunity.",
+      website: "https://phdcincubator.org/en/home/",
+      logo: phdcLogo,
     },
     {
-      name: "Hispanic Development Council",
-      description: "Empowering the Hispanic community through education, employment services, and community programs.",
-      website: "https://hdc-pa.org",
-      logo: "🌟",
+      name: "BEAM Collaborative",
+      description: "A design-forward nonprofit building community through creative placemaking, economic inclusion, and equitable development.",
+      website: "https://beamcollaborative.org",
+      logo: beamLogo,
     },
   ];
 
-  const communityPartners = [
-    { name: "Pittsburgh Food Bank", logo: "🍎" },
-    { name: "Local First Pittsburgh", logo: "🏪" },
-    { name: "Pittsburgh Public Market", logo: "🛒" },
-    { name: "Grow Pittsburgh", logo: "🌱" },
-    { name: "Just Harvest", logo: "🌾" },
-    { name: "412 Food Rescue", logo: "🚚" },
+  const madeBy = [
+    {
+      name: "Center for Shared Prosperity",
+      description: "Created by",
+      website: "https://www.centerforsharedprosperity.org/",
+      logo: cspLogo,
+    },
+    {
+      name: "CREATE Lab",
+      description: "Hosted by",
+      website: "https://www.cmucreatelab.org/",
+      logo: createLabLogo,
+    },
   ];
 
   return (
@@ -40,33 +50,39 @@ export function PartnersPage() {
         </p>
       </div>
 
-      {/* Featured Partners */}
+      {/* Community Partners */}
       <section className="mb-16">
         <h2
           className="text-2xl font-bold uppercase tracking-wide mb-6"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          ⭐ Featured Partners
+          Community Partners
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {featuredPartners.map(partner => (
             <div
               key={partner.name}
-              className="bg-[var(--stone)] border-2 border-[var(--ink)] rounded-xl p-8 hover:shadow-lg transition-shadow"
+              className="bg-[var(--stone)] border-2 border-[var(--ink)] rounded-xl p-8 hover:shadow-lg transition-shadow flex flex-col"
             >
-              <div className="text-6xl mb-4">{partner.logo}</div>
+              <div className="h-16 flex items-start mb-6">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-h-16 max-w-[200px] w-auto object-contain"
+                />
+              </div>
               <h3
-                className="text-2xl font-bold mb-3"
+                className="text-xl font-bold mb-3"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {partner.name}
               </h3>
-              <p className="text-[var(--ink)] mb-6">{partner.description}</p>
+              <p className="text-[var(--ink)] mb-6 flex-1">{partner.description}</p>
               <a
                 href={partner.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#bacce7] text-[var(--ink)] rounded-lg hover:opacity-80 transition-opacity font-medium"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#bacce7] text-[var(--ink)] rounded-lg hover:opacity-80 transition-opacity font-medium w-fit"
               >
                 Visit Website
                 <ExternalLink className="w-4 h-4" />
@@ -76,23 +92,40 @@ export function PartnersPage() {
         </div>
       </section>
 
-      {/* Community Partners Grid */}
+      {/* Made By */}
       <section className="mb-16">
         <h2
           className="text-2xl font-bold uppercase tracking-wide mb-6"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          🤝 Community Partners
+          Made &amp; Hosted By
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {communityPartners.map(partner => (
-            <div
-              key={partner.name}
-              className="bg-white border-2 border-[var(--ink)] rounded-xl p-6 text-center hover:bg-[var(--stone)] transition-colors"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {madeBy.map(org => (
+            <a
+              key={org.name}
+              href={org.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col gap-4 p-8 bg-[var(--stone)] border-2 border-[var(--ink)] rounded-xl hover:shadow-lg transition-shadow"
             >
-              <div className="text-4xl mb-3">{partner.logo}</div>
-              <h4 className="text-sm font-medium">{partner.name}</h4>
-            </div>
+              <div className="h-14 flex items-center">
+                <img
+                  src={org.logo}
+                  alt={org.name}
+                  className="max-h-14 max-w-[180px] w-auto object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-wide text-[var(--ink)]/50 mb-1" style={{ fontFamily: "var(--font-mono)" }}>
+                  {org.description}
+                </p>
+                <p className="font-semibold text-[var(--ink)] flex items-center gap-2">
+                  {org.name}
+                  <ExternalLink className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity" />
+                </p>
+              </div>
+            </a>
           ))}
         </div>
       </section>
@@ -110,25 +143,14 @@ export function PartnersPage() {
           <p className="text-lg text-white/90 mb-8">
             Interested in partnering with GoLocal? We're always looking to collaborate with organizations that share our mission of supporting local businesses and strengthening communities.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:partners@golocal.org"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--sky)] rounded-lg font-medium hover:bg-gray-100 transition-colors"
-            >
-              <Mail className="w-5 h-5" />
-              Get in Touch
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-[var(--sky)] transition-colors"
-            >
-              Learn More
-              <ExternalLink className="w-5 h-5" />
-            </a>
-          </div>
+          <a
+            href="mailto:partners@golocal.org"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-[var(--sky)] rounded-lg font-medium hover:bg-gray-100 transition-colors"
+          >
+            Get in Touch
+          </a>
         </div>
       </section>
-
     </div>
   );
 }
