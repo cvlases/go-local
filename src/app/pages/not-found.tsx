@@ -10,7 +10,7 @@ export function NotFoundPage() {
         <h1 className="text-3xl font-bold" style={{ fontFamily: "var(--font-display)" }}>
           Page Not Found
         </h1>
-        <p className="text-lg text-[var(--muted)]">
+        <p className="text-lg text-[var(--ink)]">
           Looks like this restaurant isn't on our menu yet.
         </p>
         <Link

@@ -7,6 +7,7 @@ import { CategoryRow } from "../components/category-row";
 import { useState } from "react";
 import { RestaurantDetailModal } from "../components/restaurant-detail-modal";
 import { Restaurant } from "../data/restaurants";
+import { star } from "../../assets/icons";
 
 export function LandingPage() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
@@ -48,21 +49,15 @@ export function LandingPage() {
             >
               {SITE_CONFIG.tagline}
             </h1>
-            <p className="text-xl md:text-2xl text-[var(--muted)] max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-[var(--ink)] max-w-3xl mx-auto">
               {SITE_CONFIG.description}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
               <Link
                 to="/directory"
-                className="px-8 py-4 bg-[var(--coral)] text-white rounded-lg font-medium hover:bg-[var(--coral)]/90 transition-colors text-lg"
+                className="px-8 py-4 bg-[var(--coral)] text-[var(--ink)] rounded-lg font-semibold hover:bg-[var(--coral)]/80 transition-colors text-lg"
               >
                 Browse the Directory
-              </Link>
-              <Link
-                to="/submit"
-                className="px-8 py-4 bg-transparent border-2 border-[var(--ink)] text-[var(--ink)] rounded-lg font-medium hover:bg-[var(--ink)] hover:text-white transition-colors text-lg"
-              >
-                Submit a Restaurant
               </Link>
             </div>
           </motion.div>
@@ -91,13 +86,13 @@ export function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div>
               <div
-                className="text-5xl font-bold text-[var(--gold)]"
+                className="text-5xl font-bold text-[var(--ink)]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {restaurants.length}
               </div>
               <div
-                className="text-sm uppercase tracking-wide text-[var(--muted)] mt-2"
+                className="text-sm uppercase tracking-wide text-[var(--ink)] mt-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 Restaurants
@@ -105,13 +100,13 @@ export function LandingPage() {
             </div>
             <div>
               <div
-                className="text-5xl font-bold text-[var(--coral)]"
+                className="text-5xl font-bold text-[var(--ink)]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 12
               </div>
               <div
-                className="text-sm uppercase tracking-wide text-[var(--muted)] mt-2"
+                className="text-sm uppercase tracking-wide text-[var(--ink)] mt-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 Neighborhoods
@@ -119,13 +114,13 @@ export function LandingPage() {
             </div>
             <div>
               <div
-                className="text-5xl font-bold text-[var(--lime)]"
+                className="text-5xl font-bold text-[var(--ink)]"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 100%
               </div>
               <div
-                className="text-sm uppercase tracking-wide text-[var(--muted)] mt-2"
+                className="text-sm uppercase tracking-wide text-[var(--ink)] mt-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
                 Human Curated
@@ -144,8 +139,8 @@ export function LandingPage() {
           onRestaurantClick={setSelectedRestaurant}
         />
         <CategoryRow
-          title="Great for Catering"
-          emoji="🎉"
+          title="Planning Something Big?"
+          icon={star}
           restaurants={cateringRestaurants}
           onRestaurantClick={setSelectedRestaurant}
         />
@@ -160,7 +155,7 @@ export function LandingPage() {
         <div className="text-center mt-8">
           <Link
             to="/directory"
-            className="inline-flex items-center gap-2 text-lg text-[var(--coral)] hover:underline font-medium"
+            className="inline-flex items-center gap-2 text-lg text-[var(--ink)] hover:underline font-medium"
           >
             See all restaurants →
           </Link>
@@ -168,7 +163,7 @@ export function LandingPage() {
       </section>
 
       {/* Why GoLocal Strip */}
-      <section className="bg-[var(--sky)] border-y-2 border-[var(--ink)] py-16">
+      <section className="bg-[#F04D5A] border-y-2 border-[var(--ink)] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center space-y-3">

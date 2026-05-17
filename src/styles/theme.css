@@ -2,19 +2,28 @@
 
 :root {
   /* GoLocal Color Palette */
-  --coral: #F36E63;
-  --sky: #72B0D8;
+  --coral: #9ACD65;
+  --sky: #456194;
   --lime: #9ACD65;
   --gold: #FAD331;
-  --cream: #FDF8F2;
-  --ink: #1C1C1C;
-  --stone: #F0EBE3;
-  --muted: #5A5550;
+  --cream: #FEF1E6;
+  --ink: #000000;
+  --stone: #F0DFC8;
+  --muted: #666666;
+
+  /* Secondary palette — use sparingly */
+  --sec-periwinkle: #bacce7;
+  --sec-blue: #456194;
+  --sec-navy: #333669;
+  --sec-purple: #9161a3;
+  --sec-sage: #6a9982;
+  --sec-red: #c1575b;
 
   /* Typography */
-  --font-display: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
+  --font-display: 'Lexend', sans-serif;
+  --font-body: 'Lexend', sans-serif;
+  --font-logo: 'Fredoka One', cursive;
+  --font-mono: 'Lexend', sans-serif;
 
   --font-size: 16px;
   --background: var(--cream);
@@ -28,7 +37,7 @@
   --secondary: var(--sky);
   --secondary-foreground: #ffffff;
   --muted: var(--stone);
-  --muted-foreground: var(--muted);
+  --muted-foreground: #666666;
   --accent: var(--lime);
   --accent-foreground: var(--ink);
   --destructive: #d4183d;
@@ -142,6 +151,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
+    font-weight: 300;
   }
 
   /**
@@ -155,17 +165,18 @@
 
   h1, h2, h3 {
     font-family: var(--font-display);
+    font-weight: 600;
   }
 
   h1 {
     font-size: var(--text-2xl);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.3;
   }
 
   h2 {
     font-size: var(--text-xl);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.3;
   }
 

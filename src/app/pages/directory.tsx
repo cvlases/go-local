@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
+import { star } from "../../assets/icons";
 import { Search, X, SlidersHorizontal } from "lucide-react";
 import { restaurants, Restaurant } from "../data/restaurants";
 import { RestaurantCard } from "../components/restaurant-card";
@@ -7,7 +8,6 @@ import { RestaurantDetailModal } from "../components/restaurant-detail-modal";
 import { CategoryRow } from "../components/category-row";
 import { FilterPanel } from "../components/filter-panel";
 import { filterRestaurants, sortRestaurants, getRestaurantsByCategory, Filters } from "../utils/filters";
-import { getLikedRestaurants } from "../utils/likes";
 import { CUISINE_TYPES, DIETARY_OPTIONS, SERVICE_OPTIONS, CATERING_OPTIONS, NEIGHBORHOODS } from "../config";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -26,7 +26,6 @@ export function DirectoryPage() {
   });
 
   const [sortBy, setSortBy] = useState<"likes" | "newest" | "name" | "neighborhood">("likes");
-  const showSavedOnly = searchParams.get("saved") === "true";
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -36,17 +35,10 @@ export function DirectoryPage() {
     filters.service.forEach(s => params.append("service", s));
     filters.catering.forEach(c => params.append("catering", c));
     filters.neighborhood.forEach(n => params.append("neighborhood", n));
-    if (showSavedOnly) params.set("saved", "true");
     setSearchParams(params);
-  }, [filters, showSavedOnly, setSearchParams]);
+  }, [filters, setSearchParams]);
 
-  let filteredRestaurants = filterRestaurants(restaurants, filters);
-  
-  if (showSavedOnly) {
-    const likedIds = getLikedRestaurants();
-    filteredRestaurants = filteredRestaurants.filter(r => likedIds.includes(r.id));
-  }
-
+  const filteredRestaurants = filterRestaurants(restaurants, filters);
   const sortedRestaurants = sortRestaurants(filteredRestaurants, sortBy);
 
   const communityFavorites = getRestaurantsByCategory(restaurants, "community-favorites");
@@ -78,14 +70,14 @@ export function DirectoryPage() {
   const hasActiveFilters = filters.search || filters.cuisine.length > 0 || filters.dietary.length > 0 || 
     filters.service.length > 0 || filters.catering.length > 0 || filters.neighborhood.length > 0;
 
-  const showCategoryRows = !hasActiveFilters && !showSavedOnly;
+  const showCategoryRows = !hasActiveFilters;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Search Bar */}
       <div className="mb-6">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted)]" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--ink)]" />
           <input
             type="text"
             placeholder="Search restaurants, cuisines, neighborhoods..."
@@ -124,7 +116,7 @@ export function DirectoryPage() {
             <SlidersHorizontal className="w-5 h-5" />
             <span>Filters</span>
             {hasActiveFilters && (
-              <span className="px-2 py-0.5 bg-[var(--coral)] text-white text-xs rounded-full">
+              <span className="px-2 py-0.5 bg-[var(--coral)] text-[var(--ink)] text-xs rounded-full">
                 {filters.cuisine.length + filters.dietary.length + filters.service.length + 
                  filters.catering.length + filters.neighborhood.length}
               </span>
@@ -190,7 +182,7 @@ export function DirectoryPage() {
         <main className="lg:col-span-3">
           {/* Results Count & Sort */}
           <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <p className="text-sm text-[var(--muted)]" style={{ fontFamily: "var(--font-mono)" }}>
+            <p className="text-sm text-[var(--ink)]" style={{ fontFamily: "var(--font-mono)" }}>
               Showing {sortedRestaurants.length} of {restaurants.length} restaurants
             </p>
             <select
@@ -209,10 +201,11 @@ export function DirectoryPage() {
           {showCategoryRows && (
             <div className="my-12 bg-[var(--gold)] border-2 border-[var(--ink)] rounded-xl p-6">
               <h2
-                className="text-2xl font-bold uppercase tracking-wide mb-2"
+                className="text-2xl font-semibold uppercase tracking-wide mb-2 flex items-center gap-2"
                 style={{ fontFamily: "var(--font-mono)" }}
               >
-                🎉 PLANNING SOMETHING BIG?
+                <img src={star} alt="" className="w-7 h-7" />
+                PLANNING SOMETHING BIG?
               </h2>
               <p className="text-lg mb-6">
                 These restaurants are ready for your event, party, or group order.
@@ -260,18 +253,18 @@ export function DirectoryPage() {
               className="text-2xl font-bold uppercase tracking-wide mb-6"
               style={{ fontFamily: "var(--font-mono)" }}
             >
-              {showSavedOnly ? "❤️ Your Saved Restaurants" : "All Restaurants"}
+              All Restaurants
             </h2>
             
             {sortedRestaurants.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-xl text-[var(--muted)]">
-                  {showSavedOnly ? "You haven't saved any restaurants yet." : "No restaurants found matching your filters."}
+                <p className="text-xl text-[var(--ink)]">
+                  No restaurants found matching your filters.
                 </p>
                 {hasActiveFilters && (
                   <button
                     onClick={clearAllFilters}
-                    className="mt-4 px-6 py-3 bg-[var(--coral)] text-white rounded-lg hover:bg-[var(--coral)]/90"
+                    className="mt-4 px-6 py-3 bg-[var(--coral)] text-[var(--ink)] rounded-lg hover:bg-[var(--coral)]/80"
                   >
                     Clear filters
                   </button>

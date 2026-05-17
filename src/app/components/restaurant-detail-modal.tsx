@@ -1,9 +1,10 @@
-import { X, Heart, ExternalLink, MapPin, Clock, DollarSign } from "lucide-react";
+import { X, ExternalLink, Clock } from "lucide-react";
 import { Restaurant } from "../data/restaurants";
 import { restaurantImages } from "../data/images";
 import { DIETARY_OPTIONS } from "../config";
-import { useState, useEffect } from "react";
-import { isRestaurantLiked, toggleLike } from "../utils/likes";
+import { DIETARY_ICONS, locationPin, catering as cateringIcon, heart } from "../../assets/icons";
+
+const VEGAN_SAGE = "#6a9982";
 
 interface RestaurantDetailModalProps {
   restaurant: Restaurant;
@@ -14,30 +15,15 @@ export function RestaurantDetailModal({
   restaurant,
   onClose,
 }: RestaurantDetailModalProps) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [localLikes, setLocalLikes] = useState(restaurant.likes);
-
-  useEffect(() => {
-    setIsLiked(isRestaurantLiked(restaurant.id));
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [restaurant.id]);
-
-  const handleLikeClick = () => {
-    const newLikedState = toggleLike(restaurant.id);
-    setIsLiked(newLikedState);
-    setLocalLikes((prev) => (newLikedState ? prev + 1 : prev - 1));
-    window.dispatchEvent(new Event("likes-updated"));
-  };
-
   const imageUrl =
     restaurantImages[restaurant.image] ||
     "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60"
+      onClick={onClose}
+    >
       <div
         className="bg-[var(--cream)] border-2 border-[var(--ink)] rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
@@ -59,11 +45,11 @@ export function RestaurantDetailModal({
 
         {/* Content */}
         <div className="p-6 space-y-6">
-          {/* Title & Like */}
+          {/* Title & Like Count */}
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
               <h2
-                className="text-3xl font-bold mb-2"
+                className="text-3xl font-semibold mb-2"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {restaurant.name}
@@ -80,46 +66,31 @@ export function RestaurantDetailModal({
                 ))}
               </div>
             </div>
-            <button
-              onClick={handleLikeClick}
-              className="flex flex-col items-center gap-1 hover:scale-110 transition-transform"
-            >
-              <Heart
-                className={`w-8 h-8 ${
-                  isLiked
-                    ? "fill-[var(--coral)] text-[var(--coral)]"
-                    : "text-[var(--ink)]"
-                }`}
-              />
-              <span className="text-sm font-medium">{localLikes}</span>
-            </button>
+            <div className="flex flex-col items-center gap-1">
+              <img src={heart} alt="likes" className="w-7 h-7 opacity-70" />
+              <span className="text-sm font-medium">{restaurant.likes}</span>
+            </div>
           </div>
 
           {/* Info Row */}
           <div className="flex flex-wrap gap-4 text-sm">
             {restaurant.neighborhood && (
               <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[var(--coral)]" />
+                <img src={locationPin} alt="" className="w-4 h-4" />
                 <span>{restaurant.neighborhood}</span>
               </div>
             )}
             {restaurant.hours && (
               <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[var(--coral)]" />
+                <Clock className="w-4 h-4 text-[var(--ink)]" />
                 <span>{restaurant.hours}</span>
-              </div>
-            )}
-            {restaurant.priceRange && (
-              <div className="flex items-center gap-2">
-                <DollarSign className="w-4 h-4 text-[var(--coral)]" />
-                <span>{restaurant.priceRange}</span>
               </div>
             )}
           </div>
 
           {/* Address */}
           {restaurant.address && (
-            <div className="text-sm text-[var(--muted)]">
+            <div className="text-sm text-[var(--ink)]">
               {restaurant.address}
             </div>
           )}
@@ -135,7 +106,7 @@ export function RestaurantDetailModal({
             {restaurant.dietary.length > 0 && (
               <div>
                 <h4
-                  className="text-sm font-bold uppercase tracking-wide mb-2"
+                  className="text-sm font-semibold uppercase tracking-wide mb-2"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   Dietary Options
@@ -146,9 +117,11 @@ export function RestaurantDetailModal({
                     return option ? (
                       <span
                         key={d}
-                        className="px-3 py-1 bg-[var(--lime)] text-[var(--ink)] rounded-full text-sm font-medium"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 text-[var(--ink)] rounded-full text-sm font-medium"
+                        style={{ backgroundColor: (d === "vegan" || d === "vegetarian") ? VEGAN_SAGE : "var(--lime)" }}
                       >
-                        {option.emoji} {option.label}
+                        <img src={DIETARY_ICONS[d] ?? option.emoji} alt="" className="w-4 h-4" />
+                        {option.label}
                       </span>
                     ) : null;
                   })}
@@ -160,14 +133,15 @@ export function RestaurantDetailModal({
             {restaurant.catering && (
               <div>
                 <h4
-                  className="text-sm font-bold uppercase tracking-wide mb-2"
+                  className="text-sm font-semibold uppercase tracking-wide mb-2"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   Catering
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-[var(--gold)] text-[var(--ink)] rounded-full text-sm font-medium">
-                    🎉 Catering Available
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--gold)] text-[var(--ink)] rounded-full text-sm font-medium">
+                    <img src={cateringIcon} alt="" className="w-4 h-4" />
+                    Catering Available
                   </span>
                   {restaurant.cateringCapacity && (
                     <span className="px-3 py-1 bg-[var(--stone)] border border-[var(--ink)] rounded-full text-sm">
@@ -182,7 +156,7 @@ export function RestaurantDetailModal({
             {restaurant.service.length > 0 && (
               <div>
                 <h4
-                  className="text-sm font-bold uppercase tracking-wide mb-2"
+                  className="text-sm font-semibold uppercase tracking-wide mb-2"
                   style={{ fontFamily: "var(--font-mono)" }}
                 >
                   Service
@@ -201,13 +175,13 @@ export function RestaurantDetailModal({
             )}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA */}
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <a
               href={restaurant.orderLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[var(--coral)] text-white rounded-lg hover:bg-[var(--coral)]/90 transition-colors font-medium"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[#bacce7] text-[var(--ink)] rounded-lg hover:opacity-80 transition-opacity font-semibold"
             >
               Order / Visit Website
               <ExternalLink className="w-4 h-4" />
@@ -215,11 +189,11 @@ export function RestaurantDetailModal({
           </div>
 
           {/* Footer */}
-          <div className="text-xs text-[var(--muted)] text-center pt-4 border-t border-[var(--ink)]/20">
+          <div className="text-xs text-[var(--ink)] text-center pt-4 border-t border-[var(--ink)]/20">
             <p style={{ fontFamily: "var(--font-mono)" }}>
               Submitted by community · Added {new Date(restaurant.addedDate).toLocaleDateString()}
             </p>
-            <a href="#" className="text-[var(--sky)] hover:underline mt-2 inline-block">
+            <a href="#" className="text-[var(--ink)] hover:underline mt-2 inline-block">
               Something wrong? Suggest an edit →
             </a>
           </div>

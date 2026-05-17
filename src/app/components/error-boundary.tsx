@@ -59,7 +59,7 @@ export function ErrorBoundary() {
 
           <div className="mt-8 pt-8 border-t-2 border-[var(--stone)]">
             <p 
-              className="text-xs uppercase tracking-wide text-[var(--muted)] mb-2"
+              className="text-xs uppercase tracking-wide text-[var(--ink)] mb-2"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Need help?

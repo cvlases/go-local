@@ -35,7 +35,7 @@ export function PartnersPage() {
         >
           Community Partners
         </h1>
-        <p className="text-lg text-[var(--muted)]">
+        <p className="text-lg text-[var(--ink)]">
           GoLocal is made possible by our community partners who share our commitment to supporting local businesses and building strong neighborhoods.
         </p>
       </div>
@@ -61,12 +61,12 @@ export function PartnersPage() {
               >
                 {partner.name}
               </h3>
-              <p className="text-[var(--muted)] mb-6">{partner.description}</p>
+              <p className="text-[var(--ink)] mb-6">{partner.description}</p>
               <a
                 href={partner.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--coral)] text-white rounded-lg hover:bg-[var(--coral)]/90 transition-colors font-medium"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#bacce7] text-[var(--ink)] rounded-lg hover:opacity-80 transition-opacity font-medium"
               >
                 Visit Website
                 <ExternalLink className="w-4 h-4" />
@@ -129,59 +129,6 @@ export function PartnersPage() {
         </div>
       </section>
 
-      {/* Use Our Template */}
-      <section className="mt-16 bg-[var(--gold)] border-2 border-[var(--ink)] rounded-xl p-8 md:p-12">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="text-5xl mb-4">💡</div>
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-4"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Want this for your organization?
-          </h2>
-          <p className="text-lg mb-6">
-            GoLocal is designed to be a reusable template for student organizations, community groups, and local initiatives. Our code is open and adaptable.
-          </p>
-          <div className="space-y-4 text-left max-w-xl mx-auto mb-8">
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-[var(--ink)] text-white rounded-full flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h4 className="font-bold mb-1">Easy Configuration</h4>
-                <p className="text-sm">Update a simple config file with your organization's details</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-[var(--ink)] text-white rounded-full flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h4 className="font-bold mb-1">No Backend Required</h4>
-                <p className="text-sm">Runs entirely on JSON data files — deploy anywhere for free</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-[var(--ink)] text-white rounded-full flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h4 className="font-bold mb-1">Community-Focused</h4>
-                <p className="text-sm">Built with accessibility, warmth, and usability in mind</p>
-              </div>
-            </div>
-          </div>
-          <a
-            href="https://github.com/golocal/template"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--ink)] text-white rounded-lg font-medium hover:bg-[var(--ink)]/90 transition-colors"
-          >
-            View Template on GitHub
-            <ExternalLink className="w-5 h-5" />
-          </a>
-        </div>
-      </section>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import { useRef } from "react";
 interface CategoryRowProps {
   title: string;
   emoji?: string;
+  icon?: string;
   restaurants: Restaurant[];
   onRestaurantClick: (restaurant: Restaurant) => void;
 }
@@ -13,6 +14,7 @@ interface CategoryRowProps {
 export function CategoryRow({
   title,
   emoji,
+  icon,
   restaurants,
   onRestaurantClick,
 }: CategoryRowProps) {
@@ -39,7 +41,8 @@ export function CategoryRow({
           className="text-xl font-bold uppercase tracking-wide"
           style={{ fontFamily: "var(--font-mono)" }}
         >
-          {emoji && <span className="mr-2">{emoji}</span>}
+          {icon && <img src={icon} alt="" className="w-6 h-6 mr-2 inline-block" />}
+          {!icon && emoji && <span className="mr-2">{emoji}</span>}
           {title}
         </h2>
         <div className="flex gap-2">

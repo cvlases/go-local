@@ -69,7 +69,7 @@ export function MapPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-center h-[600px] bg-[var(--stone)] rounded-xl">
-          <p className="text-xl text-[var(--muted)]">Loading map...</p>
+          <p className="text-xl text-[var(--ink)]">Loading map...</p>
         </div>
       </div>
     );
@@ -84,7 +84,7 @@ export function MapPage() {
         >
           Restaurant Map
         </h1>
-        <p className="text-lg text-[var(--muted)]">
+        <p className="text-lg text-[var(--ink)]">
           Explore Pittsburgh's local restaurants by location
         </p>
       </div>
@@ -109,7 +109,7 @@ export function MapPage() {
           {/* Cuisine Filters */}
           <div>
             <h3
-              className="text-sm uppercase tracking-wide text-[var(--muted)] mb-3"
+              className="text-sm uppercase tracking-wide text-[var(--ink)] mb-3"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Filter by Cuisine
@@ -134,7 +134,7 @@ export function MapPage() {
           {/* Neighborhood Filters */}
           <div>
             <h3
-              className="text-sm uppercase tracking-wide text-[var(--muted)] mb-3"
+              className="text-sm uppercase tracking-wide text-[var(--ink)] mb-3"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Filter by Neighborhood
@@ -197,14 +197,14 @@ export function MapPage() {
                     <h3 className="font-bold text-lg mb-1" style={{ fontFamily: "var(--font-display)" }}>
                       {restaurant.name}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-1">
+                    <p className="text-sm text-[var(--ink)] mb-1">
                       {restaurant.cuisine.join(", ")}
                     </p>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-[var(--ink)] mb-2">
                       📍 {restaurant.neighborhood}
                     </p>
                     {restaurant.address && (
-                      <p className="text-xs text-gray-500 mb-2">
+                      <p className="text-xs text-[var(--ink)] mb-2">
                         {restaurant.address}
                       </p>
                     )}

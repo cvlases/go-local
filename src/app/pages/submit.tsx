@@ -50,7 +50,7 @@ export function SubmitPage() {
         >
           Know a spot we're missing? Add it to the table.
         </h1>
-        <p className="text-lg text-[var(--muted)]">
+        <p className="text-lg text-[var(--ink)]">
           Help grow our community directory by submitting your favorite local restaurants.
         </p>
       </div>
@@ -125,7 +125,7 @@ export function SubmitPage() {
             className="w-full px-4 py-3 border-2 border-[var(--ink)] rounded-lg bg-white resize-none"
             placeholder="Tell us what makes this place special..."
           />
-          <p className="text-xs text-[var(--muted)] mt-1" style={{ fontFamily: "var(--font-mono)" }}>
+          <p className="text-xs text-[var(--ink)] mt-1" style={{ fontFamily: "var(--font-mono)" }}>
             Be authentic! Share your personal experience.
           </p>
         </div>
@@ -173,7 +173,7 @@ export function SubmitPage() {
             className="w-full px-4 py-3 border-2 border-[var(--ink)] rounded-lg bg-white"
             placeholder="e.g., 50"
           />
-          <p className="text-xs text-[var(--muted)] mt-1">
+          <p className="text-xs text-[var(--ink)] mt-1">
             If they offer catering, how many people can they accommodate?
           </p>
         </div>
@@ -204,7 +204,7 @@ export function SubmitPage() {
 
         {/* Note */}
         <div className="p-4 bg-[var(--stone)] border border-[var(--ink)] rounded-lg">
-          <p className="text-sm text-[var(--muted)]" style={{ fontFamily: "var(--font-mono)" }}>
+          <p className="text-sm text-[var(--ink)]" style={{ fontFamily: "var(--font-mono)" }}>
             📝 Note: Submissions are reviewed by the GoLocal community team before going live.
           </p>
         </div>
@@ -229,7 +229,7 @@ export function SubmitPage() {
       {/* Alternative: Google Form */}
       <div className="mt-8 p-6 bg-[var(--sky)]/20 border-2 border-[var(--sky)] rounded-xl">
         <h3 className="font-bold mb-2">Prefer Google Forms?</h3>
-        <p className="text-sm text-[var(--muted)] mb-4">
+        <p className="text-sm text-[var(--ink)] mb-4">
           You can also submit restaurants using our Google Form.
         </p>
         <a

@@ -100,7 +100,7 @@ export function EventsPage() {
                   >
                     {event.title}
                   </h3>
-                  <div className="space-y-1 text-sm text-[var(--muted)]">
+                  <div className="space-y-1 text-sm text-[var(--ink)]">
                     <p className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       {event.date} · {event.time}
@@ -132,7 +132,7 @@ export function EventsPage() {
         <div className="bg-[var(--stone)]/50 border border-[var(--ink)] rounded-xl p-6">
           <ul className="space-y-2">
             {pastEvents.map((event, i) => (
-              <li key={i} className="text-[var(--muted)]" style={{ fontFamily: "var(--font-mono)" }}>
+              <li key={i} className="text-[var(--ink)]" style={{ fontFamily: "var(--font-mono)" }}>
                 • {event}
               </li>
             ))}
@@ -179,7 +179,7 @@ export function EventsPage() {
                 </div>
                 {/* Info */}
                 <div className="p-4 space-y-3">
-                  <div className="text-sm text-[var(--muted)]" style={{ fontFamily: "var(--font-mono)" }}>
+                  <div className="text-sm text-[var(--ink)]" style={{ fontFamily: "var(--font-mono)" }}>
                     {zine.date}
                   </div>
                   <p className="text-sm">{zine.description}</p>
@@ -221,7 +221,7 @@ export function EventsPage() {
               Subscribe
             </button>
           </form>
-          <p className="text-xs text-[var(--muted)] mt-4" style={{ fontFamily: "var(--font-mono)" }}>
+          <p className="text-xs text-[var(--ink)] mt-4" style={{ fontFamily: "var(--font-mono)" }}>
             We respect your inbox. Unsubscribe anytime.
           </p>
         </div>
