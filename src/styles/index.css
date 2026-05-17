@@ -2,3 +2,19 @@
 @import './tailwind.css';
 @import './theme.css';
 @import 'leaflet/dist/leaflet.css';
+
+/* Warm tint on map tiles to match site palette */
+.golocal-map .leaflet-tile-pane {
+  filter: saturate(110%) contrast(1.05);
+}
+
+.golocal-map .leaflet-popup-content-wrapper {
+  border: 2px solid #1C1C1C;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #1C1C1C;
+  font-family: var(--font-body);
+}
+
+.golocal-map .leaflet-popup-tip {
+  border-top-color: #1C1C1C;
+}
