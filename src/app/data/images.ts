@@ -1,24 +1,57 @@
-// Image mappings for restaurant data
+import chloeNicole from "../../assets/restaurant/chloe-nicole.jpg";
+import everydayCafe from "../../assets/restaurant/everyday-cafe.jpg";
+import tanaEthiopian from "../../assets/restaurant/tana-ethiopian.jpg";
+import wingsAndAPrayer from "../../assets/restaurant/wings-and-a-prayer.jpeg";
+import roxannesCatering from "../../assets/restaurant/roxannes-catering.jpg";
+import carmis from "../../assets/restaurant/carmis.png";
+import sugarxbutter from "../../assets/restaurant/sugarxbutter.jpeg";
+import showcaseBbq from "../../assets/restaurant/showcase-bbq.jpg";
+import flavorOfPuertoRico from "../../assets/restaurant/flavorofpuertorico.jpg";
+import elRinconOaxaqueno from "../../assets/restaurant/el-rincon-oaxaqueno.jpeg";
+import papelon from "../../assets/restaurant/papelon.jpeg";
+import laBellita from "../../assets/restaurant/la-bellita.jpeg";
+import pupusasYAntojitos from "../../assets/restaurant/pupusasyantojitos.jpeg";
+import snackever from "../../assets/restaurant/snackever.jpeg";
+import secretosDeMisAbuelos from "../../assets/restaurant/secretosdemisabuelos.jpeg";
+import communityKitchen from "../../assets/restaurant/community-kitchen.jpg";
+import blackRadish from "../../assets/restaurant/black-radish.jpg";
+import defer from "../../assets/restaurant/defer.jpg";
+import laPrima from "../../assets/restaurant/laprima.webp";
+import boujiBites from "../../assets/restaurant/bouji-bites.jpeg";
+import ephesusMediterranean from "../../assets/restaurant/ephesus.jpeg";
+import thaiGourmet from "../../assets/restaurant/thai-gourmet.jpeg";
+import bombayToBurgh from "../../assets/restaurant/bombay-to-burgh.jpeg";
+import soulPasta from "../../assets/restaurant/soul-pasta.jpeg";
+import cobblerWorld from "../../assets/restaurant/cobbler-world.jpg";
+import wildOnyinz from "../../assets/restaurant/wild-onyinz.jpeg";
+import bagelFactory from "../../assets/restaurant/bagel-factory.png";
+
 export const restaurantImages: Record<string, string> = {
-  "sandwich-primanti": "https://images.unsplash.com/photo-1610080099909-159e0c0b08d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYW5kd2ljaCUyMGNvbGVzbGF3JTIwcnVzdGljfGVufDF8fHx8MTc3NDQ2Njk5MHww&ixlib=rb-4.1.0&q=80&w=1080",
-  "ethiopian-platter": "https://images.unsplash.com/photo-1765338915553-6e02fe63ff4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxldGhpb3BpYW4lMjBmb29kJTIwaW5qZXJhfGVufDF8fHx8MTc3NDQ2Njk5MHww&ixlib=rb-4.1.0&q=80&w=1080",
-  "neapolitan-pizza": "https://images.unsplash.com/photo-1750127060930-ea1cdc1e59a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZWFwb2xpdGFuJTIwcGl6emElMjB3b29kJTIwZmlyZWR8ZW58MXx8fHwxNzc0NDY2OTkwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "falafel-wrap": "https://images.unsplash.com/photo-1769481614068-47cfb4d1f125?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYWxhZmVsJTIwd3JhcCUyMG1lZGl0ZXJyYW5lYW58ZW58MXx8fHwxNzc0NDY2OTkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "pho-bowl": "https://images.unsplash.com/photo-1701480253822-1842236c9a97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaG8lMjB2aWV0bmFtZXNlJTIwc291cHxlbnwxfHx8fDE3NzQ0NjY5OTF8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "cafe-garden": "https://images.unsplash.com/photo-1683771419437-b7c593059d95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYWZlJTIwcGFzdHJpZXMlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0NDY3MDAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "charcoal-burger": "https://images.unsplash.com/photo-1658078367143-1a24488f1704?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGFyY29hbCUyMGdyaWxsZWQlMjBidXJnZXJ8ZW58MXx8fHwxNzc0NDY2OTkyfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "bbq-ribs": "https://images.unsplash.com/photo-1611354574034-9655b5b72d59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYnElMjByaWJzJTIwc2F1Y2V8ZW58MXx8fHwxNzc0NDY3MDAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "indian-curry": "https://images.unsplash.com/photo-1708793873401-e8c6c153b76a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBjdXJyeSUyMHBhbmVlcnxlbnwxfHx8fDE3NzQ0NTcxOTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "bagels-spread": "https://images.unsplash.com/photo-1707079408137-cc73e9ef71c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYWdlbHMlMjBjcmVhbSUyMGNoZWVzZXxlbnwxfHx8fDE3NzQ0NjY5OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "square-pizza": "https://images.unsplash.com/photo-1575150741130-fd1529c52913?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaXp6YSUyMHNsaWNlcyUyMGNsYXNzaWN8ZW58MXx8fHwxNzc0NDY3MDAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "sichuan-dish": "https://images.unsplash.com/photo-1666278172017-ad93e14c329d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWNodWFuJTIwY2hpbmVzZSUyMHNwaWN5fGVufDF8fHx8MTc3NDQ2Njk5NHww&ixlib=rb-4.1.0&q=80&w=1080",
-  "pancakes-brunch": "https://images.unsplash.com/photo-1667804958153-c95c3ce690d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYW5jYWtlcyUyMGJydW5jaCUyMGxlbW9ufGVufDF8fHx8MTc3NDQ2Njk5NHww&ixlib=rb-4.1.0&q=80&w=1080",
-  "custom-tacos": "https://images.unsplash.com/photo-1582236530048-e4a7f33718d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWNvcyUyMGZyZXNoJTIwY29sb3JmdWx8ZW58MXx8fHwxNzc0NDY2OTk1fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "empanadas": "https://images.unsplash.com/photo-1646314230198-e27c375e1a2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbXBhbmFkYXMlMjBhcmdlbnRpbmlhbnxlbnwxfHx8fDE3NzQ0NjY5OTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "thai-noodles": "https://images.unsplash.com/photo-1757845301558-e8e7dd41bc64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0aGFpJTIwbm9vZGxlcyUyMHBhZHxlbnwxfHx8fDE3NzQ0NjY5OTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "mofongo": "https://images.unsplash.com/photo-1642435486762-90a948889670?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2ZvbmdvJTIwcHVlcnRvJTIwcmljYW58ZW58MXx8fHwxNzc0NDY2OTk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "italian-bowl": "https://images.unsplash.com/photo-1704915912471-070dd75619c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpdGFsaWFuJTIwcGFzdGElMjBib3dsJTIwZnJlc2h8ZW58MXx8fHwxNzc0NDY2OTk2fDA&ixlib=rb-4.1.0&q=80&w=1080",
-  "hand-pulled-noodles": "https://images.unsplash.com/photo-1697701830191-c2b535e8ec51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyYW1lbiUyMG5vb2RsZXMlMjBhc2lhbnxlbnwxfHx8fDE3NzQzODY5MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "international-food": "https://images.unsplash.com/photo-1762703744776-dedce1f87411?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbnRlcm5hdGlvbmFsJTIwc3RyZWV0JTIwZm9vZHxlbnwxfHx8fDE3NzQ0NjY5OTd8MA&ixlib=rb-4.1.0&q=80&w=1080",
-  "boba-tea": "https://images.unsplash.com/photo-1751199956820-ecb919004024?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxib2JhJTIwbWlsayUyMHRlYSUyMGFzaWFufGVufDF8fHx8MTc3NDQ2NzAwMHww&ixlib=rb-4.1.0&q=80&w=1080",
+  "chloe-nicoles-catering": chloeNicole,
+  "everyday-cafe": everydayCafe,
+  "tana-ethiopian": tanaEthiopian,
+  "wings-and-a-prayer": wingsAndAPrayer,
+  "roxannes-catering": roxannesCatering,
+  "carmis": carmis,
+  "sugarxbutter": sugarxbutter,
+  "showcase-bbq": showcaseBbq,
+  "flavor-of-puerto-rico": flavorOfPuertoRico,
+  "el-rincon-oaxaqueno": elRinconOaxaqueno,
+  "papelon-venezuelan": papelon,
+  "la-bellita": laBellita,
+  "pupusas-helen": pupusasYAntojitos,
+  "snackever": snackever,
+  "secretos-de-mis-abuelos": secretosDeMisAbuelos,
+  "community-kitchen-pittsburgh": communityKitchen,
+  "black-radish-kitchen": blackRadish,
+  "de-fer-coffee": defer,
+  "la-prima-espresso": laPrima,
+  "bouji-bites": boujiBites,
+  "ephesus-mediterranean": ephesusMediterranean,
+  "thai-gourmet": thaiGourmet,
+  "bombay-to-burgh": bombayToBurgh,
+  "soul-pasta": soulPasta,
+  "cobblerworld": cobblerWorld,
+  "wild-onyinz": wildOnyinz,
+  "bagel-factory": bagelFactory,
 };

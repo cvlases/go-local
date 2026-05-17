@@ -3,6 +3,7 @@ import { Restaurant } from "../data/restaurants";
 import { restaurantImages } from "../data/images";
 import { DIETARY_OPTIONS } from "../config";
 import { DIETARY_ICONS, locationPin, catering as cateringIcon, heart } from "../../assets/icons";
+import phdcLogo from "../../assets/partners/PHDC-logo.png";
 
 const VEGAN_SAGE = "#6a9982";
 
@@ -125,6 +126,18 @@ export function RestaurantDetailModal({
                       </span>
                     ) : null;
                   })}
+                </div>
+              </div>
+            )}
+
+            {/* PHDC Incubated */}
+            {restaurant.phdcIncubated && (
+              <div>
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium text-white" style={{ backgroundColor: "#9161a3" }}>
+                    <img src={phdcLogo} alt="" className="w-4 h-4 brightness-0 invert" />
+                    PHDC Incubated Business
+                  </span>
                 </div>
               </div>
             )}
