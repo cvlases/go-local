@@ -91,19 +91,21 @@ export function DirectoryPage() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Filters Sidebar - Desktop */}
         <aside className="hidden lg:block lg:col-span-1">
-          <div className="sticky top-20">
-            <h3 
-              className="text-lg font-bold uppercase tracking-wide mb-4" 
+          <div className="sticky top-20 max-h-[calc(100vh-6rem)] flex flex-col">
+            <h3
+              className="text-lg font-bold uppercase tracking-wide mb-4 flex-shrink-0"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Filters
             </h3>
-            <FilterPanel
-              filters={filters}
-              onFilterChange={toggleFilter}
-              onClearAll={clearAllFilters}
-              hasActiveFilters={hasActiveFilters}
-            />
+            <div className="overflow-y-auto flex-1 pr-1">
+              <FilterPanel
+                filters={filters}
+                onFilterChange={toggleFilter}
+                onClearAll={clearAllFilters}
+                hasActiveFilters={hasActiveFilters}
+              />
+            </div>
           </div>
         </aside>
 
@@ -249,12 +251,16 @@ export function DirectoryPage() {
 
           {/* Full Directory Grid */}
           <div>
-            <h2
-              className="text-2xl font-bold uppercase tracking-wide mb-6"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              All Restaurants
-            </h2>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="flex-1 h-0.5 bg-[var(--ink)]" />
+              <h2
+                className="text-2xl font-bold uppercase tracking-wide whitespace-nowrap"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                All Restaurants
+              </h2>
+              <div className="flex-1 h-0.5 bg-[var(--ink)]" />
+            </div>
             
             {sortedRestaurants.length === 0 ? (
               <div className="text-center py-12">

@@ -12,17 +12,71 @@ interface FilterPanelProps {
   hasActiveFilters: boolean;
 }
 
+interface FilterSectionProps {
+  title: string;
+  section: string;
+  children: React.ReactNode;
+  count: number;
+  expandedSections: Set<string>;
+  onToggle: (section: string) => void;
+}
+
+function FilterSection({ title, section, children, count, expandedSections, onToggle }: FilterSectionProps) {
+  const isExpanded = expandedSections.has(section);
+
+  return (
+    <div className="border-b border-[var(--ink)]/20 last:border-b-0">
+      <button
+        onClick={() => onToggle(section)}
+        className="w-full flex items-center justify-between py-3 px-1 hover:bg-[var(--stone)]/30 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium">{title}</span>
+          {count > 0 && (
+            <span className="px-2 py-0.5 bg-[var(--coral)] text-[var(--ink)] text-xs rounded-full">
+              {count}
+            </span>
+          )}
+        </div>
+        {isExpanded ? (
+          <ChevronUp className="w-4 h-4 text-[var(--ink)]" />
+        ) : (
+          <ChevronDown className="w-4 h-4 text-[var(--ink)]" />
+        )}
+      </button>
+
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="pb-3 px-1">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilters }: FilterPanelProps) {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
 
   const toggleSection = (section: string) => {
-    const newExpanded = new Set(expandedSections);
-    if (newExpanded.has(section)) {
-      newExpanded.delete(section);
-    } else {
-      newExpanded.add(section);
-    }
-    setExpandedSections(newExpanded);
+    setExpandedSections(prev => {
+      const next = new Set(prev);
+      if (next.has(section)) {
+        next.delete(section);
+      } else {
+        next.add(section);
+      }
+      return next;
+    });
   };
 
   const activeCounts = {
@@ -51,58 +105,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
     { icon: pizzaIcon, label: "Pizza", action: () => onFilterChange("cuisine", "Pizza") },
   ];
 
-  const FilterSection = ({
-    title,
-    section,
-    children,
-    count,
-  }: {
-    title: string;
-    section: string;
-    children: React.ReactNode;
-    count: number;
-  }) => {
-    const isExpanded = expandedSections.has(section);
-
-    return (
-      <div className="border-b border-[var(--ink)]/20 last:border-b-0">
-        <button
-          onClick={() => toggleSection(section)}
-          className="w-full flex items-center justify-between py-3 px-1 hover:bg-[var(--stone)]/30 transition-colors"
-        >
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">{title}</span>
-            {count > 0 && (
-              <span className="px-2 py-0.5 bg-[var(--coral)] text-[var(--ink)] text-xs rounded-full">
-                {count}
-              </span>
-            )}
-          </div>
-          {isExpanded ? (
-            <ChevronUp className="w-4 h-4 text-[var(--ink)]" />
-          ) : (
-            <ChevronDown className="w-4 h-4 text-[var(--ink)]" />
-          )}
-        </button>
-
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="overflow-hidden"
-            >
-              <div className="pb-3 px-1">
-                {children}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    );
-  };
+  const sectionProps = { expandedSections, onToggle: toggleSection };
 
   return (
     <div className="space-y-4">
@@ -163,8 +166,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
       {/* Collapsible Filter Sections */}
       <div className="border-2 border-[var(--ink)] rounded-lg overflow-hidden bg-white">
 
-        {/* Cuisine Type */}
-        <FilterSection title="Cuisine Type" section="cuisine" count={activeCounts.cuisine}>
+        <FilterSection title="Cuisine Type" section="cuisine" count={activeCounts.cuisine} {...sectionProps}>
           <div className="flex flex-wrap gap-2">
             {CUISINE_TYPES.map(cuisine => (
               <button
@@ -185,8 +187,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
           </div>
         </FilterSection>
 
-        {/* Dietary Options */}
-        <FilterSection title="Dietary Options" section="dietary" count={activeCounts.dietary}>
+        <FilterSection title="Dietary Options" section="dietary" count={activeCounts.dietary} {...sectionProps}>
           <div className="flex flex-wrap gap-2">
             {DIETARY_OPTIONS.map(option => (
               <button
@@ -208,8 +209,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
           </div>
         </FilterSection>
 
-        {/* Service Type */}
-        <FilterSection title="Service Type" section="service" count={activeCounts.service}>
+        <FilterSection title="Service Type" section="service" count={activeCounts.service} {...sectionProps}>
           <div className="flex flex-wrap gap-2">
             {SERVICE_OPTIONS.map(service => (
               <button
@@ -230,8 +230,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
           </div>
         </FilterSection>
 
-        {/* Catering Options */}
-        <FilterSection title="Catering Options" section="catering" count={activeCounts.catering}>
+        <FilterSection title="Catering Options" section="catering" count={activeCounts.catering} {...sectionProps}>
           <div className="flex flex-wrap gap-2">
             {CATERING_OPTIONS.map(option => (
               <button
@@ -253,14 +252,13 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
           </div>
         </FilterSection>
 
-        {/* Neighborhood */}
-        <FilterSection title="Neighborhood" section="neighborhood" count={activeCounts.neighborhood}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        <FilterSection title="Neighborhood" section="neighborhood" count={activeCounts.neighborhood} {...sectionProps}>
+          <div className="flex flex-col gap-1">
             {NEIGHBORHOODS.map(neighborhood => (
               <button
                 key={neighborhood}
                 onClick={() => onFilterChange("neighborhood", neighborhood)}
-                className={`px-3 py-1.5 text-sm rounded-lg border-2 transition-colors text-left ${
+                className={`w-full px-3 py-2 text-sm rounded-lg border-2 transition-colors text-left ${
                   filters.neighborhood.includes(neighborhood)
                     ? "bg-[var(--ink)] border-[var(--ink)] text-white"
                     : "bg-white border-[var(--ink)]/30 hover:border-[var(--ink)] hover:bg-[var(--stone)]"
