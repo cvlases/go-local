@@ -121,9 +121,6 @@ export function RestaurantCard({ restaurant, onClick }: RestaurantCardProps) {
           </a>
         </div>
 
-        <p className="text-xs text-[var(--ink)] font-medium" style={{ fontFamily: "var(--font-mono)" }}>
-          Submitted by community
-        </p>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { X, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Filters } from "../utils/filters";
 import { CUISINE_TYPES, DIETARY_OPTIONS, SERVICE_OPTIONS, CATERING_OPTIONS, NEIGHBORHOODS } from "../config";
-import { DIETARY_ICONS, catering as cateringIcon } from "../../assets/icons";
+import { DIETARY_ICONS, CUISINE_ICONS, SERVICE_ICONS, CATERING_ICONS, catering as cateringIcon, healthy, takeout as takeoutIcon, pizza as pizzaIcon } from "../../assets/icons";
 
 interface FilterPanelProps {
   filters: Filters;
@@ -25,7 +25,6 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
     setExpandedSections(newExpanded);
   };
 
-  // Count active filters per category
   const activeCounts = {
     cuisine: filters.cuisine.length,
     dietary: filters.dietary.length,
@@ -34,38 +33,37 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
     neighborhood: filters.neighborhood.length,
   };
 
-  // Get all active filters for chips display
   const activeFilterChips = [
     ...filters.cuisine.map(c => ({ label: c, category: "cuisine" as const, value: c })),
     ...filters.dietary.map(d => {
       const option = DIETARY_OPTIONS.find(o => o.id === d);
-      return { label: `${option?.emoji} ${option?.label}`, category: "dietary" as const, value: d };
+      return { label: option?.label ?? d, category: "dietary" as const, value: d };
     }),
     ...filters.service.map(s => ({ label: s, category: "service" as const, value: s })),
-    ...filters.catering.map(c => ({ label: `${c}`, category: "catering" as const, value: c })),
-    ...filters.neighborhood.map(n => ({ label: `${n}`, category: "neighborhood" as const, value: n })),
+    ...filters.catering.map(c => ({ label: c, category: "catering" as const, value: c })),
+    ...filters.neighborhood.map(n => ({ label: n, category: "neighborhood" as const, value: n })),
   ];
 
   const quickFilters = [
-    { icon: DIETARY_ICONS["vegan"], label: "Plant-Based", action: () => onFilterChange("dietary", "vegan") },
-    { icon: cateringIcon, label: "Catering", action: () => onFilterChange("catering", "Available") },
-    { label: "🥡 Takeout", action: () => onFilterChange("service", "Takeout") },
-    { label: "🍕 Pizza", action: () => onFilterChange("cuisine", "Pizza") },
+    { icon: healthy, label: "Plant-Based", action: () => onFilterChange("dietary", "vegan") },
+    { icon: cateringIcon, label: "Catering", action: () => onFilterChange("catering", "Catering Available") },
+    { icon: takeoutIcon, label: "Takeout", action: () => onFilterChange("service", "Takeout") },
+    { icon: pizzaIcon, label: "Pizza", action: () => onFilterChange("cuisine", "Pizza") },
   ];
 
-  const FilterSection = ({ 
-    title, 
-    section, 
-    children, 
-    count 
-  }: { 
-    title: string; 
-    section: string; 
-    children: React.ReactNode; 
+  const FilterSection = ({
+    title,
+    section,
+    children,
+    count,
+  }: {
+    title: string;
+    section: string;
+    children: React.ReactNode;
     count: number;
   }) => {
     const isExpanded = expandedSections.has(section);
-    
+
     return (
       <div className="border-b border-[var(--ink)]/20 last:border-b-0">
         <button
@@ -75,7 +73,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium">{title}</span>
             {count > 0 && (
-              <span className="px-2 py-0.5 bg-[var(--coral)] text-white text-xs rounded-full">
+              <span className="px-2 py-0.5 bg-[var(--coral)] text-[var(--ink)] text-xs rounded-full">
                 {count}
               </span>
             )}
@@ -86,7 +84,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
             <ChevronDown className="w-4 h-4 text-[var(--ink)]" />
           )}
         </button>
-        
+
         <AnimatePresence>
           {isExpanded && (
             <motion.div
@@ -110,8 +108,8 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
     <div className="space-y-4">
       {/* Quick Filters */}
       <div>
-        <h4 
-          className="text-xs uppercase tracking-wide text-[var(--ink)] mb-2" 
+        <h4
+          className="text-xs uppercase tracking-wide text-[var(--ink)] mb-2"
           style={{ fontFamily: "var(--font-mono)" }}
         >
           Quick Filters
@@ -134,15 +132,15 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
       {hasActiveFilters && (
         <div className="p-3 bg-[var(--stone)] border-2 border-[var(--ink)] rounded-lg">
           <div className="flex items-center justify-between mb-2">
-            <h4 
-              className="text-xs uppercase tracking-wide text-[var(--ink)]" 
+            <h4
+              className="text-xs uppercase tracking-wide text-[var(--ink)]"
               style={{ fontFamily: "var(--font-mono)" }}
             >
               Active Filters ({activeFilterChips.length})
             </h4>
             <button
               onClick={onClearAll}
-              className="text-xs text-[var(--coral)] hover:underline font-medium"
+              className="text-xs text-[var(--ink)] hover:underline font-medium"
             >
               Clear all
             </button>
@@ -164,24 +162,30 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
 
       {/* Collapsible Filter Sections */}
       <div className="border-2 border-[var(--ink)] rounded-lg overflow-hidden bg-white">
+
+        {/* Cuisine Type */}
         <FilterSection title="Cuisine Type" section="cuisine" count={activeCounts.cuisine}>
           <div className="flex flex-wrap gap-2">
             {CUISINE_TYPES.map(cuisine => (
               <button
                 key={cuisine}
                 onClick={() => onFilterChange("cuisine", cuisine)}
-                className={`px-3 py-1 text-sm rounded-full border-2 transition-colors ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-full border-2 transition-colors ${
                   filters.cuisine.includes(cuisine)
                     ? "bg-[var(--sky)] border-[var(--sky)] text-white"
                     : "bg-white border-[var(--ink)]/30 hover:border-[var(--ink)] hover:bg-[var(--stone)]"
                 }`}
               >
+                {CUISINE_ICONS[cuisine] && (
+                  <img src={CUISINE_ICONS[cuisine]} alt="" className="w-4 h-4" />
+                )}
                 {cuisine}
               </button>
             ))}
           </div>
         </FilterSection>
 
+        {/* Dietary Options */}
         <FilterSection title="Dietary Options" section="dietary" count={activeCounts.dietary}>
           <div className="flex flex-wrap gap-2">
             {DIETARY_OPTIONS.map(option => (
@@ -204,42 +208,52 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
           </div>
         </FilterSection>
 
+        {/* Service Type */}
         <FilterSection title="Service Type" section="service" count={activeCounts.service}>
           <div className="flex flex-wrap gap-2">
             {SERVICE_OPTIONS.map(service => (
               <button
                 key={service}
                 onClick={() => onFilterChange("service", service)}
-                className={`px-3 py-1 text-sm rounded-full border-2 transition-colors ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-full border-2 transition-colors ${
                   filters.service.includes(service)
-                    ? "bg-[var(--coral)] border-[var(--coral)] text-white"
+                    ? "bg-[var(--coral)] border-[var(--coral)] text-[var(--ink)]"
                     : "bg-white border-[var(--ink)]/30 hover:border-[var(--ink)] hover:bg-[var(--stone)]"
                 }`}
               >
+                {SERVICE_ICONS[service] && (
+                  <img src={SERVICE_ICONS[service]} alt="" className="w-4 h-4" />
+                )}
                 {service}
               </button>
             ))}
           </div>
         </FilterSection>
 
+        {/* Catering Options */}
         <FilterSection title="Catering Options" section="catering" count={activeCounts.catering}>
           <div className="flex flex-wrap gap-2">
             {CATERING_OPTIONS.map(option => (
               <button
                 key={option}
                 onClick={() => onFilterChange("catering", option)}
-                className={`px-3 py-1 text-sm rounded-full border-2 transition-colors ${
+                className={`inline-flex items-center gap-1.5 px-3 py-1 text-sm rounded-full border-2 transition-colors ${
                   filters.catering.includes(option)
                     ? "bg-[var(--gold)] border-[var(--gold)] text-[var(--ink)]"
                     : "bg-white border-[var(--ink)]/30 hover:border-[var(--ink)] hover:bg-[var(--stone)]"
                 }`}
               >
-                🎉 {option}
+                {CATERING_ICONS[option]
+                  ? <img src={CATERING_ICONS[option]} alt="" className="w-4 h-4" />
+                  : null
+                }
+                {option}
               </button>
             ))}
           </div>
         </FilterSection>
 
+        {/* Neighborhood */}
         <FilterSection title="Neighborhood" section="neighborhood" count={activeCounts.neighborhood}>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {NEIGHBORHOODS.map(neighborhood => (
@@ -257,6 +271,7 @@ export function FilterPanel({ filters, onFilterChange, onClearAll, hasActiveFilt
             ))}
           </div>
         </FilterSection>
+
       </div>
     </div>
   );

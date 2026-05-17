@@ -7,7 +7,7 @@ import { CategoryRow } from "../components/category-row";
 import { useState } from "react";
 import { RestaurantDetailModal } from "../components/restaurant-detail-modal";
 import { Restaurant } from "../data/restaurants";
-import { star } from "../../assets/icons";
+import { star, community, newIcon, pizza, asian, mexican, cafeBakery, healthy, takeout, catering, locationPin, lateNight, brunch } from "../../assets/icons";
 
 export function LandingPage() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
@@ -17,16 +17,16 @@ export function LandingPage() {
   const newAdditions = getRestaurantsByCategory(restaurants, "new-additions");
 
   const categories = [
-    "🍕 Pizza",
-    "🍜 Noodles",
-    "🌮 Tacos",
-    "☕ Café",
-    "🥗 Vegan",
-    "🍱 Takeout",
-    "🎉 Catering",
-    "🏘️ Southside",
-    "🌙 Open Late",
-    "🥐 Brunch",
+    { icon: pizza, label: "Pizza" },
+    { icon: asian, label: "Noodles" },
+    { icon: mexican, label: "Tacos" },
+    { icon: cafeBakery, label: "Café" },
+    { icon: healthy, label: "Vegan" },
+    { icon: takeout, label: "Takeout" },
+    { icon: catering, label: "Catering" },
+    { icon: locationPin, label: "Southside" },
+    { icon: lateNight, label: "Open Late" },
+    { icon: brunch, label: "Brunch" },
   ];
 
   return (
@@ -68,12 +68,13 @@ export function LandingPage() {
           <motion.div
             animate={{ x: [0, -1000] }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="flex gap-6 whitespace-nowrap"
+            className="flex gap-16 whitespace-nowrap"
             style={{ fontFamily: "var(--font-mono)" }}
           >
             {[...categories, ...categories, ...categories].map((cat, i) => (
-              <span key={i} className="text-lg font-medium">
-                {cat}
+              <span key={i} className="inline-flex items-center gap-2 text-lg font-medium">
+                <img src={cat.icon} alt="" className="w-5 h-5 inline-block" />
+                {cat.label}
               </span>
             ))}
           </motion.div>
@@ -134,7 +135,7 @@ export function LandingPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <CategoryRow
           title="Community Favorites"
-          emoji="🏆"
+          icon={community}
           restaurants={featuredRestaurants}
           onRestaurantClick={setSelectedRestaurant}
         />
@@ -146,8 +147,8 @@ export function LandingPage() {
         />
         {newAdditions.length > 0 && (
           <CategoryRow
-            title="New Additions"
-            emoji="✨"
+            title="New to GoLocal"
+            icon={newIcon}
             restaurants={newAdditions}
             onRestaurantClick={setSelectedRestaurant}
           />
@@ -163,7 +164,7 @@ export function LandingPage() {
       </section>
 
       {/* Why GoLocal Strip */}
-      <section className="bg-[#F04D5A] border-y-2 border-[var(--ink)] py-16">
+      <section className="bg-[var(--sky)] border-y-2 border-[var(--ink)] py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center space-y-3">

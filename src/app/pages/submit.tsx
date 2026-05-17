@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { SITE_CONFIG, NEIGHBORHOODS, CUISINE_TYPES, DIETARY_OPTIONS } from "../config";
+import { DIETARY_ICONS, CUISINE_ICONS } from "../../assets/icons";
 
 export function SubmitPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -94,6 +95,7 @@ export function SubmitPage() {
             {CUISINE_TYPES.map(cuisine => (
               <label key={cuisine} className="flex items-center gap-2 p-3 border border-[var(--ink)] rounded-lg hover:bg-[var(--stone)] cursor-pointer">
                 <input type="checkbox" value={cuisine} />
+                {CUISINE_ICONS[cuisine] && <img src={CUISINE_ICONS[cuisine]} alt="" className="w-4 h-4" />}
                 <span className="text-sm">{cuisine}</span>
               </label>
             ))}
@@ -139,7 +141,11 @@ export function SubmitPage() {
             {DIETARY_OPTIONS.map(option => (
               <label key={option.id} className="flex items-center gap-2 p-3 border border-[var(--ink)] rounded-lg hover:bg-[var(--stone)] cursor-pointer">
                 <input type="checkbox" value={option.id} />
-                <span className="text-sm">{option.emoji} {option.label}</span>
+                {DIETARY_ICONS[option.id]
+                  ? <img src={DIETARY_ICONS[option.id]} alt="" className="w-4 h-4" />
+                  : <span>{option.emoji}</span>
+                }
+                <span className="text-sm">{option.label}</span>
               </label>
             ))}
           </div>
@@ -205,7 +211,7 @@ export function SubmitPage() {
         {/* Note */}
         <div className="p-4 bg-[var(--stone)] border border-[var(--ink)] rounded-lg">
           <p className="text-sm text-[var(--ink)]" style={{ fontFamily: "var(--font-mono)" }}>
-            📝 Note: Submissions are reviewed by the GoLocal community team before going live.
+            Note: Submissions are reviewed by the GoLocal community team before going live.
           </p>
         </div>
 
@@ -213,7 +219,7 @@ export function SubmitPage() {
         <div className="flex gap-4">
           <button
             type="submit"
-            className="flex-1 px-8 py-4 bg-[var(--coral)] text-white rounded-lg font-medium hover:bg-[var(--coral)]/90 transition-colors text-lg"
+            className="flex-1 px-8 py-4 bg-[var(--coral)] text-[var(--ink)] rounded-lg font-medium hover:bg-[var(--coral)]/90 transition-colors text-lg"
           >
             Submit Restaurant
           </button>

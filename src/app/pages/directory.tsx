@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
-import { star } from "../../assets/icons";
+import { star, community, newIcon, healthy } from "../../assets/icons";
 import { Search, X, SlidersHorizontal } from "lucide-react";
 import { restaurants, Restaurant } from "../data/restaurants";
 import { RestaurantCard } from "../components/restaurant-card";
@@ -228,19 +228,19 @@ export function DirectoryPage() {
             <div className="mb-12 space-y-8">
               <CategoryRow
                 title="Community Favorites"
-                emoji="🏆"
+                icon={community}
                 restaurants={communityFavorites}
                 onRestaurantClick={setSelectedRestaurant}
               />
               <CategoryRow
                 title="New to GoLocal"
-                emoji="✨"
+                icon={newIcon}
                 restaurants={newAdditions}
                 onRestaurantClick={setSelectedRestaurant}
               />
               <CategoryRow
                 title="Plant-Based & Vegan-Friendly"
-                emoji="🌱"
+                icon={healthy}
                 restaurants={plantBased}
                 onRestaurantClick={setSelectedRestaurant}
               />
