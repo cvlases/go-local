@@ -1,97 +1,120 @@
-import { useEffect } from "react";
-import { Instagram, ExternalLink } from "lucide-react";
+import { Instagram, ExternalLink, Download } from "lucide-react";
 import { SITE_CONFIG } from "../config";
 
 const INSTAGRAM_HANDLE = "centerforsharedprosperity";
 const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}/`;
 
-// To add individual post embeds, paste the post's shortcode (the part after /p/ in the URL)
-// e.g. for https://www.instagram.com/p/ABC123/ the shortcode is ABC123
 const FEATURED_POSTS: string[] = [
-  // "ABC123",
-  // "DEF456",
+  "DDGFgq9N8Q8",
+  "DYXw_AfH28J",
+  "DU-3jZFDSLX",
+  "DUs8xKbDchz",
 ];
 
 export function SocialPage() {
-  useEffect(() => {
-    if (FEATURED_POSTS.length === 0) return;
-    const script = document.createElement("script");
-    script.src = "https://www.instagram.com/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => { document.body.removeChild(script); };
-  }, []);
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="mb-10">
         <h1
           className="text-5xl font-bold mb-4"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          Find Us on Instagram
+          Social
         </h1>
-        <p className="text-lg text-[var(--ink)] max-w-xl mx-auto">
-          Follow along for new restaurant spotlights, community updates, and Pittsburgh food finds.
+        <p className="text-lg text-[var(--ink)]">
+          Community events, zines, and what we're sharing on Instagram.
         </p>
       </div>
 
-      {/* Instagram profile card */}
-      <div className="bg-[var(--stone)] border-2 border-[var(--ink)] rounded-xl p-10 text-center mb-10">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-[var(--sky)] rounded-2xl mb-6">
-          <Instagram className="w-10 h-10 text-white" />
-        </div>
+      {/* Zines */}
+      <section className="mb-12">
         <h2
-          className="text-3xl font-bold mb-2"
-          style={{ fontFamily: "var(--font-display)" }}
+          className="text-sm font-bold uppercase tracking-wide mb-6"
+          style={{ fontFamily: "var(--font-mono)" }}
         >
-          {SITE_CONFIG.instagramHandle}
+          GoLocal Zines
         </h2>
-        <p className="text-[var(--ink)] mb-8 text-lg">
-          New spots, community stories, and local flavor — all in one place.
-        </p>
-        <a
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-[var(--sky)] text-white rounded-xl font-semibold text-lg hover:opacity-90 transition-opacity"
-        >
-          <Instagram className="w-5 h-5" />
-          Follow on Instagram
-          <ExternalLink className="w-4 h-4" />
-        </a>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { title: "GoLocal Guide: Winter Warmers", issue: "Issue #3", date: "Winter 2026", color: "var(--coral)", description: "Our favorite cozy spots for cold Pittsburgh days" },
+            { title: "GoLocal Guide: Coffee & Study Spots", issue: "Issue #2", date: "Fall 2025", color: "var(--sky)", description: "The best cafés for getting work done" },
+            { title: "GoLocal Guide: Late Night Eats", issue: "Issue #1", date: "Summer 2025", color: "var(--lime)", description: "Where to eat after midnight in Pittsburgh" },
+          ].map((zine, i) => (
+            <div key={i} className="bg-[var(--stone)] border-2 border-[var(--ink)] rounded-xl overflow-hidden">
+              <div
+                className="h-40 flex items-center justify-center p-4 text-center"
+                style={{ backgroundColor: zine.color }}
+              >
+                <div>
+                  <h4 className="text-lg font-bold text-white mb-1" style={{ fontFamily: "var(--font-display)" }}>{zine.title}</h4>
+                  <p className="text-white/80 text-sm" style={{ fontFamily: "var(--font-mono)" }}>{zine.issue}</p>
+                </div>
+              </div>
+              <div className="p-4 space-y-2">
+                <p className="text-xs text-[var(--ink)]" style={{ fontFamily: "var(--font-mono)" }}>{zine.date}</p>
+                <p className="text-sm">{zine.description}</p>
+                <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-[var(--ink)] text-white rounded-lg hover:bg-[var(--ink)]/90 transition-colors text-sm">
+                  <Download className="w-4 h-4" />
+                  Download PDF
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      {/* Embedded posts — populated when FEATURED_POSTS has entries */}
-      {FEATURED_POSTS.length > 0 ? (
-        <div className="mb-10">
-          <h3
-            className="text-sm font-bold uppercase tracking-wide mb-6 text-center"
+      {/* Instagram */}
+      <section className="mb-12">
+        <div className="flex items-center justify-between mb-4">
+          <h2
+            className="text-sm font-bold uppercase tracking-wide"
             style={{ fontFamily: "var(--font-mono)" }}
           >
-            Recent Posts
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-items-center">
-            {FEATURED_POSTS.map(shortcode => (
-              <blockquote
-                key={shortcode}
-                className="instagram-media w-full"
-                data-instgrm-permalink={`https://www.instagram.com/p/${shortcode}/`}
-                data-instgrm-version="14"
-                style={{ maxWidth: "540px", minWidth: "326px", margin: "0 auto" }}
+            Instagram
+          </h2>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--sky)] text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity"
+          >
+            <Instagram className="w-4 h-4" />
+            {SITE_CONFIG.instagramHandle}
+            <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
+
+        {/* Photo grid */}
+        <div className="grid grid-cols-2 gap-2 border-2 border-[var(--ink)] rounded-xl overflow-hidden">
+          {FEATURED_POSTS.map(shortcode => (
+            <a
+              key={shortcode}
+              href={`https://www.instagram.com/p/${shortcode}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative block bg-[var(--stone)] overflow-hidden group"
+              style={{ aspectRatio: "1 / 1" }}
+            >
+              <iframe
+                src={`https://www.instagram.com/p/${shortcode}/embed/`}
+                style={{
+                  width: "100%",
+                  height: "420px",
+                  border: "none",
+                  pointerEvents: "none",
+                  marginTop: "-4px",
+                }}
+                scrolling="no"
+                title={`Instagram post ${shortcode}`}
               />
-            ))}
-          </div>
+              <div className="absolute inset-0 bg-[var(--ink)]/0 group-hover:bg-[var(--ink)]/20 transition-colors flex items-center justify-center">
+                <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
+              </div>
+            </a>
+          ))}
         </div>
-      ) : (
-        <div className="mb-10 border-2 border-dashed border-[var(--ink)]/20 rounded-xl p-8 text-center">
-          <Instagram className="w-8 h-8 mx-auto mb-3 text-[var(--ink)]/30" />
-          <p className="text-sm text-[var(--ink)]/50" style={{ fontFamily: "var(--font-mono)" }}>
-            Add post shortcodes to <code>FEATURED_POSTS</code> in social.tsx to embed recent posts here.
-          </p>
-        </div>
-      )}
+      </section>
 
       {/* CTA strip */}
       <div className="bg-[var(--gold)] border-2 border-[var(--ink)] rounded-xl p-8 text-center">

@@ -7,7 +7,7 @@ import { CategoryRow } from "../components/category-row";
 import { useState } from "react";
 import { RestaurantDetailModal } from "../components/restaurant-detail-modal";
 import { Restaurant } from "../data/restaurants";
-import { star, community, newIcon, pizza, asian, mexican, cafeBakery, healthy, takeout, catering, locationPin, lateNight, brunch } from "../../assets/icons";
+import { star, community, newIcon, pizza, asian, mexican, cafeBakery, healthy, takeout, catering, locationPin, lateNight, brunch, neighbors, directory, noAds } from "../../assets/icons";
 
 export function LandingPage() {
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
@@ -168,19 +168,19 @@ export function LandingPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="text-center space-y-3">
-              <div className="text-5xl">🙋</div>
+              <img src={neighbors} alt="" className="w-12 h-12 mx-auto" />
               <p className="text-lg text-white font-medium">
                 Recommended by your neighbors, not an algorithm
               </p>
             </div>
             <div className="text-center space-y-3">
-              <div className="text-5xl">📋</div>
+              <img src={directory} alt="" className="w-12 h-12 mx-auto" />
               <p className="text-lg text-white font-medium">
                 A living directory — always growing, always community-updated
               </p>
             </div>
             <div className="text-center space-y-3">
-              <div className="text-5xl">🚫</div>
+              <img src={noAds} alt="" className="w-12 h-12 mx-auto" />
               <p className="text-lg text-white font-medium">
                 No ads. No promoted placements. Ever.
               </p>

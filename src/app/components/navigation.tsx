@@ -20,8 +20,8 @@ export function Navigation() {
     { to: "/map", label: "Map" },
     { to: "/submit", label: "Contribute" },
     { to: "/social", label: "Social" },
-    { to: "/mission", label: "Mission" },
     { to: "/partners", label: "Partners" },
+    { to: "/mission", label: "Mission" },
   ];
 
   return (
