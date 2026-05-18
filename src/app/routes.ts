@@ -11,21 +11,24 @@ import { MissionPage } from "./pages/mission";
 import { PartnersPage } from "./pages/partners";
 import { NotFoundPage } from "./pages/not-found";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: Layout,
-    ErrorBoundary: ErrorBoundary,
-    children: [
-      { index: true, Component: LandingPage, ErrorBoundary },
-      { path: "directory", Component: DirectoryPage, ErrorBoundary },
-      { path: "map", Component: MapPage, ErrorBoundary },
-      { path: "submit", Component: SubmitPage, ErrorBoundary },
-      { path: "social", Component: SocialPage, ErrorBoundary },
-      { path: "mission", Component: MissionPage, ErrorBoundary },
-      { path: "extras", Component: EventsPage, ErrorBoundary },
-      { path: "partners", Component: PartnersPage, ErrorBoundary },
-      { path: "*", Component: NotFoundPage },
-    ],
-  },
-]);
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: Layout,
+      ErrorBoundary: ErrorBoundary,
+      children: [
+        { index: true, Component: LandingPage, ErrorBoundary },
+        { path: "directory", Component: DirectoryPage, ErrorBoundary },
+        { path: "map", Component: MapPage, ErrorBoundary },
+        { path: "submit", Component: SubmitPage, ErrorBoundary },
+        { path: "social", Component: SocialPage, ErrorBoundary },
+        { path: "mission", Component: MissionPage, ErrorBoundary },
+        { path: "extras", Component: EventsPage, ErrorBoundary },
+        { path: "partners", Component: PartnersPage, ErrorBoundary },
+        { path: "*", Component: NotFoundPage },
+      ],
+    },
+  ],
+  { basename: "/go-local" }
+);
