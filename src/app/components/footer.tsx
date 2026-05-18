@@ -16,7 +16,7 @@ export function Footer() {
               {SITE_CONFIG.orgName}
             </h3>
             <p className="text-sm text-white">
-              Not ranked by robots. Found by neighbors.
+              Found by neighbors, not an algorithm.
             </p>
             <p className="text-sm text-white mt-2">{SITE_CONFIG.city}</p>
           </div>

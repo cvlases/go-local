@@ -4,14 +4,14 @@ export const SITE_CONFIG = {
   orgName: "GoLocal",
   city: "Pittsburgh, PA",
   tagline: "Your neighborhood, on one page.",
-  description: "GoLocal is a community-built guide to the best local restaurants near you — discovered and recommended by real people.",
+  description: "GoLocal is a community-built guide to the best local restaurants near you, discovered and recommended by real people.",
   instagramHandle: "@centerforsharedprosperity",
   submitFormUrl: "https://forms.google.com/d/e/YOUR_FORM_ID/viewform",
   primaryColor: "#F36E63", // coral
 };
 
 export const ANNOUNCEMENT = {
-  active: true,
+  active: false,
   text: "📣 CSP Spring Market — April 12th at the UC!",
   linkText: "Learn more",
   linkUrl: "/events",

@@ -170,19 +170,19 @@ export function LandingPage() {
             <div className="text-center space-y-3">
               <img src={neighbors} alt="" className="w-12 h-12 mx-auto" />
               <p className="text-lg text-white font-medium">
-                Recommended by your neighbors, not an algorithm
+                Recommended by your neighbors.
               </p>
             </div>
             <div className="text-center space-y-3">
               <img src={directory} alt="" className="w-12 h-12 mx-auto" />
               <p className="text-lg text-white font-medium">
-                A living directory — always growing, always community-updated
+                A living directory you can contribute to!
               </p>
             </div>
             <div className="text-center space-y-3">
               <img src={noAds} alt="" className="w-12 h-12 mx-auto" />
               <p className="text-lg text-white font-medium">
-                No ads. No promoted placements. Ever.
+                No ads or promoted placements. 
               </p>
             </div>
           </div>
